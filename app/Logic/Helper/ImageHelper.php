@@ -31,7 +31,7 @@ class ImageHelper
         $img->fit(1920, 1080);
         $img->save($this->base_path . $file_folder . $file_name);
 
-        return $file_name;
+        return $file_folder . $file_name;
     }
 
 }

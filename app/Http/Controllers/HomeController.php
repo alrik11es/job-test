@@ -16,8 +16,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->limit(4)->get();
-        return view('welcome', ['posts'=>$posts]);
+        $posts = Post::orderBy('id', 'desc')->paginate(4);
+        $post_count = Post::count();
+        return view('welcome', ['posts' => $posts, 'post_count'=>$post_count]);
     }
 
     /**
@@ -33,14 +34,13 @@ class HomeController extends Controller
         ]);
 
         try{
-
             $post = new Post();
             $post->title = $request->input('title');
             $file = $request->file('photo');
             $post->url = $helper->savePhoto($file);
             $post->save();
         } catch (\Exception $e) {
-            return redirect('/')->withErrors(['image not valid']);
+            return redirect('/')->withErrors([$e->getMessage()]);
         }
 
         if ($validator->fails()) {

@@ -39,7 +39,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="">Posts: {{$posts->count()}}</a></li>
+                <li><a href="">Posts: {{$post_count}}</a></li>
                 <li class="center"><a href="">Export</a></li>
                 <li class="pull-right"><a href="" class="views">Views: ##</a></li>
             </ul>
@@ -94,12 +94,13 @@
                     <div class="caption">
                         <h3>{{ $post->title }}</h3>
                     </div>
-                    <img src="/img/photos/{{ $post->url }}" alt="{{$post->title}}">
+                    <img src="/img/{{ $post->url }}" alt="{{$post->title}}">
                 </div>
             </div>
         </div>
     @endforeach
 
+        {{ $posts->links() }}
 </div><!-- /.container -->
 
 
