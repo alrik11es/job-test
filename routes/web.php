@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/api/addView', 'ApiController@addView');
+
+
+Route::post('/save', 'HomeController@create');
+Route::get('/', 'HomeController@index');
