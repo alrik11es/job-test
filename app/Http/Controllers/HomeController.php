@@ -30,7 +30,7 @@ class HomeController extends Controller
     {
         $validator = \Validator::make($request->all(), [
             'title' => 'max:255',
-            'image' => 'image',
+            'image' => 'image|max:2000000',
         ]);
 
         try{
@@ -54,10 +54,27 @@ class HomeController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function export()
     {
-        //
+        header('Content-Type: application/octet-stream');
+        header("Content-Transfer-Encoding: Binary");
+        header("Content-disposition: attachment; filename=\"export.csv\"");
+
+        $posts = Post::orderBy('id', 'desc')->get();
+
+        $fh = fopen('php://output', 'w');
+        $values['title'] = 'Title';
+        $values['image'] = 'Filename';
+        fputcsv($fh, $values);
+        foreach($posts as $post){
+
+            $values['title'] = $post->title;
+            $values['image'] = base_path().'/storage/photos/'.$post->url;
+            fputcsv($fh, $values);
+        }
+
     }
+
 
     /**
      * Display the specified resource.

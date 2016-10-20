@@ -26,6 +26,6 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
 
     return [
         'title' => $faker->realText(100),
-        'url' => 'photos/'.mt_rand(1,4).'.jpg',
+        'url' => mt_rand(1,4).'.jpg',
     ];
 });

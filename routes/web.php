@@ -14,5 +14,6 @@
 Route::get('/api/addView', 'ApiController@addView');
 
 
+Route::get('/export.csv', 'HomeController@export');
 Route::post('/save', 'HomeController@create');
 Route::get('/', 'HomeController@index');

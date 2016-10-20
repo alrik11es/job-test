@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="This is just a job test">
     <meta name="author" content="alrik11es">
     <link rel="icon" href="favicon.ico">
@@ -15,7 +14,6 @@
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -40,7 +38,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="">Posts: {{$post_count}}</a></li>
-                <li class="center"><a href="">Export</a></li>
+                <li class="center"><a href="/export.csv">Export</a></li>
                 <li class="pull-right"><a href="" class="views">Views: ##</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -79,7 +77,7 @@
             <div class="form-group">
                 <label for="file">File input</label>
                 <input type="file" id="file" name="photo">
-                <p class="help-block">Example block-level help text here.</p>
+                <p class="help-block">upto 1920x1080, image size upto 20 MB.</p>
             </div>
             <button type="submit" class="btn btn-default">Upload image</button>
         </form>
@@ -94,7 +92,7 @@
                     <div class="caption">
                         <h3>{{ $post->title }}</h3>
                     </div>
-                    <img src="/img/{{ $post->url }}" alt="{{$post->title}}">
+                    <a href="/img/photos/{{ $post->url }}"><img src="/img/photos/mini/{{ $post->url }}" alt="{{$post->title}}"></a>
                 </div>
             </div>
         </div>
